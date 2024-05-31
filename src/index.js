@@ -619,7 +619,7 @@ function findHtmlWebpackPlugin(compilation) {
 
   /** @type {*} HtmlWebpackPlugin */
   const HtmlWebpackPlugin = compiler.options.plugins.find(
-    (p) => p?.constructor?.name === 'HtmlRspackPlugin',
+    (p) => p?.constructor?.name === 'HtmlWebpackPlugin',
   )?.constructor;
 
   if (!HtmlWebpackPlugin) {
