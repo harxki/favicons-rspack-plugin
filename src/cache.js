@@ -1,8 +1,7 @@
 // @ts-check
 
 // Import types
-/** @typedef {import("webpack").Compilation} WebpackCompilation */
-/** @typedef {ReturnType<WebpackCompilation['fileSystemInfo']['mergeSnapshots']>} Snapshot */
+/** @typedef {import("@rspack/core").Compilation} WebpackCompilation */
 
 const path = require('path');
 const { getContentHash } = require('./hash');

@@ -1,7 +1,7 @@
 // @ts-check
 
 // Import types
-/** @typedef {import("webpack").Compilation} WebpackCompilation */
+/** @typedef {import("@rspack/core").Compilation} WebpackCompilation */
 /** @typedef {ReturnType<WebpackCompilation['getLogger']>} WebpackLogger */
 
 /**

@@ -5,8 +5,8 @@ declare class FaviconsWebpackPlugin {
      */
     constructor(args: import('./options').FaviconWebpackPlugionOptions | string);
     /**
-     * @param {import('webpack').Compiler} compiler
+     * @param {import('@rspack/core').Compiler} compiler
      */
-    apply(compiler: import('webpack').Compiler): void;
+    apply(compiler: import('@rspack/core').Compiler): void;
     #private;
 }

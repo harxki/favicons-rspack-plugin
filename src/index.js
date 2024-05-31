@@ -34,16 +34,16 @@ class FaviconsWebpackPlugin {
   }
 
   /**
-   * @param {import('webpack').Compiler} compiler
+   * @param {import('@rspack/core').Compiler} compiler
    */
   apply(compiler) {
-    compiler.hooks.initialize.tap('FaviconsWebpackPlugin', () => {
+    compiler.hooks.initialize.tap('FaviconsRspackPlugin', () => {
       this.#hookIntoCompiler(compiler);
     });
   }
 
   /**
-   * @param {import('webpack').Compiler} compiler
+   * @param {import('@rspack/core').Compiler} compiler
    */
   #hookIntoCompiler(compiler) {
     const webpack = compiler.webpack;
@@ -196,7 +196,7 @@ class FaviconsWebpackPlugin {
         }
 
         if (this.#options.inject) {
-          // Hook into the html-webpack-plugin processing and add the html
+          // Hook into the html-rspack-plugin processing and add the html
           findHtmlWebpackPlugin(compilation)
             ?.getHooks(compilation)
             ?.alterAssetTags?.tapPromise(
@@ -323,7 +323,7 @@ class FaviconsWebpackPlugin {
    * @param {{content: Buffer | string, hash: string}[]} logoFileSources
    * @param {{content: Buffer | string, hash: string}[]} logoMaskableFileSources
    * @param {Buffer | string} baseManifest - the content of the file from options.manifest
-   * @param {import('webpack').Compilation} compilation
+   * @param {import('@rspack/core').Compilation} compilation
    */
   #generateFavicons(
     logoFileSources,
@@ -460,7 +460,7 @@ class FaviconsWebpackPlugin {
     } = await favicons(logoFileSources, {
       // Generate all assets relative to the root directory
       // to allow relative manifests and to set the final public path
-      // once it has been provided by the html-webpack-plugin
+      // once it has been provided by the html-rspack-plugin
       path: '',
       ...this.#options.favicons,
       // set maskable icons
@@ -494,7 +494,7 @@ class FaviconsWebpackPlugin {
   /**
    * Returns wether the plugin should generate a light version or a full webapp
    *
-   * @param {import('webpack').Compiler} compiler
+   * @param {import('@rspack/core').Compiler} compiler
    * @returns {'webapp' | 'light'}
    */
   #getCurrentCompilationMode(compiler) {
@@ -517,7 +517,7 @@ class FaviconsWebpackPlugin {
  * where the logos should be placed
  *
  * @param {string} logoContentHash
- * @param {import('webpack').Compilation} compilation
+ * @param {import('@rspack/core').Compilation} compilation
  * @param {import('./options').FaviconWebpackPlugionInternalOptions} faviconOptions
  */
 function getRelativeOutputPath(logoContentHash, compilation, faviconOptions) {
@@ -542,7 +542,7 @@ function getRelativeOutputPath(logoContentHash, compilation, faviconOptions) {
 /**
  *
  * @param {string} logoContentHash
- * @param {import('webpack').Compilation} compilation
+ * @param {import('@rspack/core').Compilation} compilation
  * @param {import('./options').FaviconWebpackPlugionInternalOptions} faviconOptions
  */
 function getResolvedPublicPath(logoContentHash, compilation, faviconOptions) {
@@ -588,38 +588,38 @@ function mergeManifests(manifest1, manifest2) {
 }
 
 /**
- * Verify that the html-webpack-plugin is compatible
- * @param {typeof import('html-webpack-plugin')} htmlWebpackPlugin
+ * Verify that the html-rspack-plugin is compatible
+ * @param {typeof import('html-rspack-plugin')} htmlWebpackPlugin
  */
 function verifyHtmlWebpackPluginVersion(htmlWebpackPlugin) {
   // Verify that this HtmlWebpackPlugin supports hooks
   return htmlWebpackPlugin.version >= 5;
 }
 
-/** Return the currently used html-webpack-plugin location */
+/** Return the currently used html-rspack-plugin location */
 function getHtmlWebpackPluginVersion() {
   try {
-    const location = require.resolve('html-webpack-plugin/package.json');
+    const location = require.resolve('html-rspack-plugin/package.json');
     const version = require(location).version;
 
-    return `found html-webpack-plugin ${version} at ${location}`;
+    return `found html-rspack-plugin ${version} at ${location}`;
   } catch (e) {
-    return 'html-webpack-plugin not found';
+    return 'html-rspack-plugin not found';
   }
 }
 
 /**
  * Return `HtmlWebpackPlugin` if it is available.
  *
- * @param {import('webpack').Compilation} compilation
- * @returns {typeof import('html-webpack-plugin') | undefined}
+ * @param {import('@rspack/core').Compilation} compilation
+ * @returns {typeof import('html-rspack-plugin') | undefined}
  */
 function findHtmlWebpackPlugin(compilation) {
   const compiler = compilation.compiler;
 
   /** @type {*} HtmlWebpackPlugin */
   const HtmlWebpackPlugin = compiler.options.plugins.find(
-    (p) => p?.constructor?.name === 'HtmlWebpackPlugin',
+    (p) => p?.constructor?.name === 'HtmlRspackPlugin',
   )?.constructor;
 
   if (!HtmlWebpackPlugin) {

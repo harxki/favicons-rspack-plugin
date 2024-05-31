@@ -1,5 +1,4 @@
-export type WebpackCompilation = import("webpack").Compilation;
-export type Snapshot = ReturnType<WebpackCompilation['fileSystemInfo']['mergeSnapshots']>;
+export type WebpackCompilation = import("@rspack/core").Compilation;
 /**
  * Executes the generator function and caches the result in memory
  * The cache will be invalidated after the logo source file was modified
