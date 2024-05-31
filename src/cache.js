@@ -29,11 +29,6 @@ function asPromise(func) {
   });
 }
 
-/** @type {WeakMap<any, Snapshot>} */
-const snapshots = new WeakMap();
-/** @type {WeakMap<Snapshot, any>} */
-const faviconCache = new WeakMap();
-
 /**
  * Executes the generator function and caches the result in memory
  * The cache will be invalidated after the logo source file was modified
@@ -41,7 +36,6 @@ const faviconCache = new WeakMap();
  * @template TResult
  *
  * @param {string[]} absoluteFilePaths - file paths used used by the generator
- * @param {any} pluginInstance - the plugin instance to use as cache key
  * @param {boolean} useWebpackCache - Support webpack built in cache
  * @param {WebpackCompilation} compilation - the current webpack compilation
  * @param {string[]} eTags - eTags to verify the string
@@ -52,51 +46,12 @@ const faviconCache = new WeakMap();
  */
 async function runCached(
   absoluteFilePaths,
-  pluginInstance,
   useWebpackCache,
   compilation,
   eTags,
   idGenerator,
   generator,
 ) {
-  const latestSnapShot = snapshots.get(pluginInstance);
-
-  if (latestSnapShot) {
-    const cachedFavicons = faviconCache.get(latestSnapShot);
-    if (cachedFavicons) {
-      const isValid = await asPromise((cb) =>
-        compilation.fileSystemInfo.checkSnapshotValid(latestSnapShot, cb),
-      );
-
-      if (isValid) {
-        // If the cache is valid return the result directly from cache
-        return cachedFavicons;
-      }
-
-      // If the source files have changed clear all caches and try again
-      faviconCache.delete(latestSnapShot);
-    }
-  }
-
-  // Store a snapshot of the filesystem
-  // to find out if the logo was changed
-  const newSnapShot = await asPromise((cb) =>
-    compilation.fileSystemInfo.createSnapshot(
-      new Date().getTime(),
-      absoluteFilePaths.filter(Boolean),
-      [],
-      [],
-      {},
-      cb,
-    ),
-  );
-
-  if (!newSnapShot) {
-    throw new Error('Could not create Snapshot');
-  }
-
-  snapshots.set(pluginInstance, newSnapShot);
-
   // Start generating the favicons
   const faviconsGenerations = await (useWebpackCache
     ? runWithFileCache(
@@ -109,9 +64,6 @@ async function runCached(
     : readFiles(absoluteFilePaths, compilation).then((fileContents) =>
         generator(fileContents, idGenerator(fileContents)),
       ));
-
-  // Store the promise of the favicon compilation in cache
-  faviconCache.set(newSnapShot, faviconsGenerations);
 
   return faviconsGenerations;
 }
