@@ -130,7 +130,6 @@ class FaviconsWebpackPlugin {
 
         const faviconCompilation = runCached(
           [...this.#options.logo, ...logoMaskable, manifestAbsoluteFilePath],
-          this,
           this.#options.cache,
           compilation,
           // Options which enforce a new recompilation
