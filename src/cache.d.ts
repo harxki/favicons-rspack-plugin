@@ -7,7 +7,6 @@ export type Snapshot = ReturnType<WebpackCompilation['fileSystemInfo']['mergeSna
  * @template TResult
  *
  * @param {string[]} absoluteFilePaths - file paths used used by the generator
- * @param {any} pluginInstance - the plugin instance to use as cache key
  * @param {boolean} useWebpackCache - Support webpack built in cache
  * @param {WebpackCompilation} compilation - the current webpack compilation
  * @param {string[]} eTags - eTags to verify the string
@@ -16,7 +15,7 @@ export type Snapshot = ReturnType<WebpackCompilation['fileSystemInfo']['mergeSna
  *
  * @returns {Promise<TResult>}
  */
-export function runCached<TResult>(absoluteFilePaths: string[], pluginInstance: any, useWebpackCache: boolean, compilation: WebpackCompilation, eTags: string[], idGenerator: (files: {
+export function runCached<TResult>(absoluteFilePaths: string[], useWebpackCache: boolean, compilation: WebpackCompilation, eTags: string[], idGenerator: (files: {
     filePath: string;
     hash: string;
     content: Buffer;
