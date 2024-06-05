@@ -1,4 +1,4 @@
-export type WebpackCompilation = import("webpack").Compilation;
+export type WebpackCompilation = import("@rspack/core").Compilation;
 /**
  * Returns the content hash for the given file content
  * @param {...(Buffer | string | undefined)} files

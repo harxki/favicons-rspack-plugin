@@ -1,7 +1,7 @@
 // @ts-check
 
 // Import types
-/** @typedef {import("webpack").Compilation} WebpackCompilation */
+/** @typedef {import("@rspack/core").Compilation} WebpackCompilation */
 
 const crypto = require('crypto');
 const url = require('url');
@@ -16,7 +16,9 @@ const url = require('url');
 function resolvePublicPath(compilation, publicPath, assetPath) {
   const publicPathString =
     publicPath && typeof publicPath === 'function'
-      ? compilation.getAssetPath(publicPath, { hash: compilation.hash })
+      ? compilation.getAssetPath(publicPath, {
+          hash: compilation.hash ?? undefined,
+        })
       : publicPath;
 
   const fullAssetPath = url.resolve(

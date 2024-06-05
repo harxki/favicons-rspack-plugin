@@ -1,7 +1,7 @@
 import test from 'ava';
 import * as path from 'path';
 import FaviconsWebpackPlugin from '../src/index.js';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-rspack-plugin';
 import {
   logo,
   withTempDirectory,

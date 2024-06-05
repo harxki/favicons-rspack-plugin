@@ -1,7 +1,7 @@
 import test from 'ava';
 import * as path from 'path';
 import FaviconsWebpackPlugin from '../src/index.js';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-rspack-plugin';
 import {
   logo,
   withTempDirectory,
@@ -11,7 +11,7 @@ import {
 
 withTempDirectory(test);
 
-test('should allow handling multiple html-webpack-plugin', async (t) => {
+test('should allow handling multiple html-rspack-plugin', async (t) => {
   const dist = path.join(t.context.root, 'dist');
   const compilationStats = await generate({
     context: t.context.root,
