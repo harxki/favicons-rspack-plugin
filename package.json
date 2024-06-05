@@ -33,6 +33,11 @@
     "svg"
   ],
   "author": "Jan Nicklas <j.nicklas@me.com> (https://github.com/jantimon)",
+  "contributors": [
+    "Bruno Dutra <brunocodutra@gmail.com> (https://github.com/brunocodutra)",
+    "Jan Nicklas <j.nicklas@me.com> (https://github.com/jantimon)",
+    "Andrey Kutejko <andy128k@gmail.com> (https://github.com/andy128k)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/harxki/favicons-rspack-plugin"
