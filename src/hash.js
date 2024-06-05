@@ -16,7 +16,9 @@ const url = require('url');
 function resolvePublicPath(compilation, publicPath, assetPath) {
   const publicPathString =
     publicPath && typeof publicPath === 'function'
-      ? compilation.getAssetPath(publicPath, { hash: compilation.hash ?? undefined })
+      ? compilation.getAssetPath(publicPath, {
+          hash: compilation.hash ?? undefined,
+        })
       : publicPath;
 
   const fullAssetPath = url.resolve(
