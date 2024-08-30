@@ -68,8 +68,7 @@
     "parse5": "^7.1.1"
   },
   "peerDependencies": {
-    "favicons": "^7.0.1",
-    "@rspack/core": "^0.7.0"
+    "favicons": "^7.0.1"
   },
   "optionalDependencies": {
     "html-rspack-plugin": "^5.7.0"
