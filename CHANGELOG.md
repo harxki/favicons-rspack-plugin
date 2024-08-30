@@ -2,6 +2,88 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 7.0.0 (2024-08-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* file based cache will only work if you configure webpacks filesystem cache
+* favicons needs to be installed separately
+* drop support for node 8
+* remove "force" inject option
+* drop support for Webpack v3 and html-webpack-plugin v3
+* an empty string public path will no longer fallback to a slash
+* drop support for node versions < 8 to be able to upgrade favicons
+* Require Node 6 is or newer
+
+### Features
+
+* add inject force option to overrule the html-webpack-plugin favicon option ([57c373c](https://github.com/harxki/favicons-rspack-plugin/commit/57c373cfda1c97be982ef5ca3227ff3127f1cfb3))
+* Add light mode during development ([98e1e6e](https://github.com/harxki/favicons-rspack-plugin/commit/98e1e6ef4b5a282d41e178c82fe465fba9549191))
+* add manifest option ([3aa7680](https://github.com/harxki/favicons-rspack-plugin/commit/3aa76801be165e6fba9b7cf833fb86ca959e9044))
+* add support for html-webpack-plugin 4.x ([9c13d4a](https://github.com/harxki/favicons-rspack-plugin/commit/9c13d4a215a42253283300c90bd5e23a98a9609a))
+* add support for html-webpack-plugin v4 ([395fc09](https://github.com/harxki/favicons-rspack-plugin/commit/395fc09e9c12171e2c494fbc0b04c68a9c6462b7))
+* add support for Webpack 4 ([819bd2d](https://github.com/harxki/favicons-rspack-plugin/commit/819bd2dba1e470734d070df3e3ce9a900b25e7ad))
+* add support for webpack 5 publicPath 'auto' and relative favicons ([9e63229](https://github.com/harxki/favicons-rspack-plugin/commit/9e63229d2cc27cd6f32ff5528462374b930116a9))
+* add typescript typings ([a083def](https://github.com/harxki/favicons-rspack-plugin/commit/a083defbbdac004cd4f08b406b8b92d738a16c7e)), closes [#72](https://github.com/harxki/favicons-rspack-plugin/issues/72)
+* add zero-config mode ([1bdade8](https://github.com/harxki/favicons-rspack-plugin/commit/1bdade862ab4e443560d54fc46c3b76df01273d3))
+* added compatibility for new webpack 4 .hooks mode ([#113](https://github.com/harxki/favicons-rspack-plugin/issues/113)) ([5ab0bb8](https://github.com/harxki/favicons-rspack-plugin/commit/5ab0bb89606d680243e022fcf9e7f6ebd59a8ae0))
+* allow setting public path to an empty string ([b3a5eb3](https://github.com/harxki/favicons-rspack-plugin/commit/b3a5eb352635d93395d280364468845097e07fc1))
+* allow skipping specific instances of html-webpack-plugin ([8ab2405](https://github.com/harxki/favicons-rspack-plugin/commit/8ab24055e4f1debd837c22a39caed5be315eaf79))
+* allow to specify a custom output paths ([fa16c1f](https://github.com/harxki/favicons-rspack-plugin/commit/fa16c1f6a26ee7b6802b4dbc058b9d23bba28c35))
+* cache assets using cache-loader ([5ace506](https://github.com/harxki/favicons-rspack-plugin/commit/5ace506d860245b2e2251b50fbf7ea959fc14905))
+* change the default output prefix to assets ([20f54d4](https://github.com/harxki/favicons-rspack-plugin/commit/20f54d485096e24789d2cf4cb659a9687a33ab31))
+* delegate finding the nearest package.json to find-package-json ([00debc4](https://github.com/harxki/favicons-rspack-plugin/commit/00debc447bbc0f015fe173edbfc2a30ef3e4ecc0))
+* expose all options of the favicons npm package ([ca4b6e9](https://github.com/harxki/favicons-rspack-plugin/commit/ca4b6e92822c65437d0047021ba4405df1ec0836))
+* generate custom manifest in light mode ([3f42d32](https://github.com/harxki/favicons-rspack-plugin/commit/3f42d32be67a090ed48e12fea6b3000a2054e9d1))
+* give the user more options to specifiy where to inject html ([880a9c6](https://github.com/harxki/favicons-rspack-plugin/commit/880a9c6e27b53dae24f04174a9068d0e07cc9e9a))
+* make cache directory configurable ([57c5efd](https://github.com/harxki/favicons-rspack-plugin/commit/57c5efdfa932fc796548b3c8a5d511ad8440050e))
+* remove -[hash] from default prefix ([72f5c08](https://github.com/harxki/favicons-rspack-plugin/commit/72f5c083993b1913aaa221c87e1cda2aa6e47c85))
+* remove peerDependency ([39f6520](https://github.com/harxki/favicons-rspack-plugin/commit/39f65206a53623593623071b857d67e5b5182cbc))
+* show current html-webpack-plugin version ([6ef0ce4](https://github.com/harxki/favicons-rspack-plugin/commit/6ef0ce4cec8366c72592822d84b53d2fe8886438))
+* the generated [hash] now is based on the current favicon-webpack-plugin version ([6cf97af](https://github.com/harxki/favicons-rspack-plugin/commit/6cf97af4f7d3dbf09cfd709843020b26dca2a70b))
+* turn favicon into a transitive dependency to allow using upstream bugfixes ([eb11a83](https://github.com/harxki/favicons-rspack-plugin/commit/eb11a831cae05abb605d5d4a877f54b236f18b3c))
+* turn favicons into a peer dependency ([cd5b20b](https://github.com/harxki/favicons-rspack-plugin/commit/cd5b20bdf79e94391d61505c9be2b642e64f5447))
+* upgrade favicons ([8848bc2](https://github.com/harxki/favicons-rspack-plugin/commit/8848bc288f2b55b47317f90b1d613a22fc39f593))
+* use the processAssets webpack api to add assets ([91272a5](https://github.com/harxki/favicons-rspack-plugin/commit/91272a50e6728a63ab16d14d2ed199aa5e0b7697))
+* use webpack 5 cache system and remove child compilation ([60ce5c2](https://github.com/harxki/favicons-rspack-plugin/commit/60ce5c2e157b316e5c40c50767b60d121a5ecac4))
+
+
+### Bug Fixes
+
+* add support for content hash for light and webapp mode ([22f1e3f](https://github.com/harxki/favicons-rspack-plugin/commit/22f1e3fc43a8d91ef31a9b63844ff9fb4fa9c92d))
+* add support for webpack@5 'auto' publicPath ([fc78e97](https://github.com/harxki/favicons-rspack-plugin/commit/fc78e97e2e65a9f9ec7c8eca3f58354cd35f50fe))
+* allow compiling multiple icon sets ([86677c4](https://github.com/harxki/favicons-rspack-plugin/commit/86677c4d6cdd7b992db42e09cdafccda10db1651))
+* always treat prefix as a directory path ([5bfedc2](https://github.com/harxki/favicons-rspack-plugin/commit/5bfedc2d586cc542f81878b2ce552e3f37806748))
+* avoid failing if html-webpack-plugin isn't installed ([0366a49](https://github.com/harxki/favicons-rspack-plugin/commit/0366a4961ec340b6e0ae765f33256cb8f6666a8a))
+* broken links in content meta tags and browserconfig.xml ([a055c59](https://github.com/harxki/favicons-rspack-plugin/commit/a055c59f3cd205af7a78a89c87c68bb097ea339d)), closes [#51](https://github.com/harxki/favicons-rspack-plugin/issues/51)
+* do not interpolate empty prefix ([f472ab9](https://github.com/harxki/favicons-rspack-plugin/commit/f472ab91356dcb5faba3fb1a7a91ac5393ee4924))
+* do not rely on html-webpack-plugin's internals ([6ce40f7](https://github.com/harxki/favicons-rspack-plugin/commit/6ce40f70c80e22c06e090f975898e856b41643a4))
+* extract the cache ([9992ec8](https://github.com/harxki/favicons-rspack-plugin/commit/9992ec8726d6024167f527e7bb4069313105c68a))
+* fix hash generation for light-mode ([67a8850](https://github.com/harxki/favicons-rspack-plugin/commit/67a88505700972e32afbd0c2b34c12d5188a6c95)), closes [#159](https://github.com/harxki/favicons-rspack-plugin/issues/159)
+* fix output path of dev favicon ([c54c965](https://github.com/harxki/favicons-rspack-plugin/commit/c54c965ec8d345c0d072db2d27ee7d308e8c6df0)), closes [#164](https://github.com/harxki/favicons-rspack-plugin/issues/164)
+* handle author as object in package.json ([f6f2a9d](https://github.com/harxki/favicons-rspack-plugin/commit/f6f2a9dd6ad43f1a86ea0d9fe42a12a8eee204a2))
+* handle the case of a template without <head></head> ([f404be7](https://github.com/harxki/favicons-rspack-plugin/commit/f404be72493e7046924089f126eb72ac3e99ac15))
+* ignore empty tags generated by favicons ([5f94f54](https://github.com/harxki/favicons-rspack-plugin/commit/5f94f54033c74e10ad97910ee47aec3591f74582)), closes [#260](https://github.com/harxki/favicons-rspack-plugin/issues/260)
+* invalidate cache when changing publicPath ([e96dff0](https://github.com/harxki/favicons-rspack-plugin/commit/e96dff0dd24dcad0de9df86f442bfd31d6460f6c))
+* **package:** update favicons to version 5.0.0 ([798e747](https://github.com/harxki/favicons-rspack-plugin/commit/798e7471ad58d69b2bad52ee7e8cf8cac899f3ba))
+* prevent recompilations ([377903c](https://github.com/harxki/favicons-rspack-plugin/commit/377903ce83bd81d7e72417cc329205f18cfebc60))
+* provide a error message if the plugin is incompatible to the html-webpack-plugin ([bb26179](https://github.com/harxki/favicons-rspack-plugin/commit/bb26179d7b41da371b1968d01b3bb862e53a1a7f))
+* remove "force" inject option ([15bab27](https://github.com/harxki/favicons-rspack-plugin/commit/15bab27a1ff7fdc1c4a651026ab171ec9e8561db))
+* remove duplicate test-entry in .travis.yml ([8d59acf](https://github.com/harxki/favicons-rspack-plugin/commit/8d59acf475c1010b4f28b58fe4197a763571ab41))
+* remove unused contentHash ([b48697f](https://github.com/harxki/favicons-rspack-plugin/commit/b48697f96a62857e13e15b2ba6309e9f0f462f0d))
+* remove unused dependencies ([f3c5b17](https://github.com/harxki/favicons-rspack-plugin/commit/f3c5b17fd52946299dcf66c7e541d86e2b886035))
+* remove unused variables and unnecessary branching from loader ([e05e5ad](https://github.com/harxki/favicons-rspack-plugin/commit/e05e5ad14d19402925406008096c096cb2db05e1))
+* resolve correct result if filesnapshot is out of date ([8b82a7a](https://github.com/harxki/favicons-rspack-plugin/commit/8b82a7a79347d1a5e530e8e9d4d0a01ec90e8282))
+* set SingleEntryPlugin name ([b35829d](https://github.com/harxki/favicons-rspack-plugin/commit/b35829d4ae914b21dc92910522474a6e87b43c46)), closes [#48](https://github.com/harxki/favicons-rspack-plugin/issues/48)
+* the loader should generate fully processed html ([03e9326](https://github.com/harxki/favicons-rspack-plugin/commit/03e9326b57c5bc91603e85f64131a4b9b5c4f185))
+* track the base manifest file only if specified ([fc4d38b](https://github.com/harxki/favicons-rspack-plugin/commit/fc4d38b28470bea10786d00491094111c6e75657))
+* workaround issues with libxml ([2c8723c](https://github.com/harxki/favicons-rspack-plugin/commit/2c8723c0795ce90b00a965bffeff760bb889866c)), closes [lovell/sharp#1593](https://github.com/lovell/sharp/issues/1593)
+
+
+* align with webpack 4 and drop support for node < 6 ([55257ed](https://github.com/harxki/favicons-rspack-plugin/commit/55257ed8ca48698a9c78988fe51322d6bc07ed60))
+* upgrade to new favicons version ([7c86a6c](https://github.com/harxki/favicons-rspack-plugin/commit/7c86a6c84f443b81f3b5dce1f1e89cd7da6c8456))
+
 ### [6.0.1](https://github.com/jantimon/favicons-webpack-plugin/compare/v6.0.0...v6.0.1) (2023-08-13)
 
 * update dependencies to their latest versions
